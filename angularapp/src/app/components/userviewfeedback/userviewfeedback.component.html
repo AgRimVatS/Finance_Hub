@@ -1,0 +1,34 @@
+<div class="container my-5 main_container" id="blur">
+    <h1 class="text-center" style="color: var(--dark-pink);">User Feedback</h1>
+    <table class="table table-bordered" *ngIf="feedbacks.length > 0; else noFeedback">
+        <thead>
+            <tr>
+                <th>S.no</th>
+                <th>Feedback</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let f of feedbacks; let i = index">
+                <td>{{i + 1}}</td>
+                <td>{{f.feedbackText}}</td>
+                <td>
+                    <button type="button" class="btn btn-delete" (click)="openPopup(f.feedbackId)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <ng-template #noFeedback>
+        <p class="text-center text-muted">No feedback available.</p>
+    </ng-template>
+</div>
+
+<!-- Overlay for Deletion Confirmation -->
+<div class="popup-overlay" id="popup">
+    <div class="popup">
+        <p>Are you sure you want to delete?</p>
+        <button class="btn btn-primary btn-delete" (click)="confirmDelete()">Yes, Delete</button>
+        <button class="btn btn-secondary" (click)="togglePopup()">Cancel</button>
+    </div>
+</div>
+

@@ -1,0 +1,28 @@
+<nav class="navbar navbar-custom" [class.menuOpen]="menuOpen">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/user/home">FinanceHub: {{username}}</a>
+        <button class="navbar-toggler" type="button" (click)="toggleMenu()">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+
+<!-- Full-screen overlay menu -->
+<div class="overlay" [class.show]="menuOpen">
+    <div class="overlay-content">
+        <div class="overlay-row">
+            <a routerLink="/user/home" (click)="toggleMenu()">Home</a>
+            <a routerLink="/user/view/savings/plan" (click)="toggleMenu()">Savings Plan</a>
+            <a routerLink="/user/applied/plans" (click)="toggleMenu()">Applied Plans</a>
+        </div>
+        <div class="overlay-row">
+            <a routerLink="/user/add/enquiry" (click)="toggleMenu()">Add Enquiries</a>
+            <a routerLink="/user/view/enquiry" (click)="toggleMenu()">My Enquiries</a>
+            <a routerLink="/user/add/feedback" (click)="toggleMenu()">Post Feedback</a>
+        </div>
+        <div class="overlay-row">
+            <a routerLink="/user/view/feedback" (click)="toggleMenu()">My Feedbacks</a>
+            <a class="logout" (click)="logout()">Logout</a>
+        </div>
+    </div>
+</div>

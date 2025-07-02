@@ -1,0 +1,38 @@
+<div class="form-container">
+    <div class="overlay"></div>
+    <div class="container">
+        <form [formGroup]="form" (ngSubmit)="editSavingsPlan()">
+            <h1>Edit Savings Plan</h1>
+            <div class="divider"></div>
+
+            <table class="table table-borderless">
+                <tr>
+                    <td><label for="name" class="form-label">Plan Name:<span class="mandatory">*</span></label></td>
+                    <td><input type="text" id="name" name="name" class="form-control" formControlName="name" required></td>
+                </tr>
+                <tr>
+                    <td><label for="goalAmount" class="form-label">Goal Amount:<span class="mandatory">*</span></label></td>
+                    <td><input type="text" id="goalAmount" name="goalAmount" class="form-control" formControlName="goalAmount" required></td>
+                </tr>
+                <tr>
+                    <td><label for="timeFrame" class="form-label">Time Frame (Years):<span class="mandatory">*</span></label></td>
+                    <td><input type="number" id="timeFrame" name="timeFrame" class="form-control" formControlName="timeFrame" required></td>
+                </tr>
+                <tr>
+                    <td><label for="riskLevel" class="form-label">Risk Level:<span class="mandatory">*</span></label></td>
+                    <td><input type="text" id="riskLevel" name="riskLevel" class="form-control" formControlName="riskLevel" required></td>
+                </tr>
+                <tr>
+                    <td><label for="description" class="form-label">Description:<span class="mandatory">*</span></label></td>
+                    <td><input type="text" id="description" name="description" class="form-control" formControlName="description" required></td>
+                </tr>
+                <tr>
+                    <td><label for="status" class="form-label">Status:<span class="mandatory">*</span></label></td>
+                    <td><input type="text" id="status" name="status" class="form-control" formControlName="status" required></td>
+                </tr>
+            </table>
+
+            <button type="submit" class="btn btn-main mt-2">Update</button>
+        </form>
+    </div>
+</div>

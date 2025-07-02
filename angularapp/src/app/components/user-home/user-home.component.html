@@ -1,0 +1,144 @@
+<div class="home-container">
+
+    <!-- Header Section -->
+    
+    <div class="hero-section">
+    
+    <div class="video-overlay"></div>
+    
+    <div class="glass-content">
+    
+    <h1>Welcome, <span class="highlight">{{userName}}</span></h1>
+    
+    <p><strong>Track and manage your financial progress.</strong></p>
+    
+    </div>
+    
+    </div>
+    
+    
+    
+    <!-- Stats Section -->
+    
+    <section class="stats-section">
+    
+    <div class="features-grid">
+    
+    <div class="feature-box glass-box">
+    
+    <i class="fas fa-piggy-bank fa-2x highlight"></i>
+    
+    <h3>Active Plans</h3>
+    
+    <p class="highlight">{{stats.userActivePlans}}</p>
+    
+    </div>
+    
+    <div class="feature-box glass-box">
+    
+    <i class="fas fa-rupee-sign fa-2x highlight"></i>
+    
+    <h3>Total Savings</h3>
+    
+    <p class="highlight">₹{{stats.totalSavings | number}}</p>
+    
+    </div>
+    
+    <div class="feature-box glass-box">
+    
+    <i class="fas fa-file-alt fa-2x highlight"></i>
+    
+    <h3>Applications Submitted</h3>
+    
+    <p class="highlight">{{stats.applicationCount}}</p>
+    
+    </div>
+    
+    <div class="feature-box glass-box">
+    
+    <i class="fas fa-question-circle fa-2x highlight"></i>
+    
+    <h3>Total Enquiries</h3>
+    
+    <p class="highlight">{{stats.totalEnquiries}}</p>
+    
+    </div>
+    
+    </div>
+    
+    </section>
+    
+    
+    
+    <!-- User Actions Section -->
+    
+    <section id="actions">
+    
+    <div class="section-content">
+    
+    <h2>Your <span class="highlight">Services</span></h2>
+    
+    <div class="features-grid">
+    
+    <div class="feature-box glass-box" (click)="navigateToPlans()">
+    
+    <i class="fas fa-piggy-bank fa-3x highlight"></i>
+    
+    <h3>View Savings Plans</h3>
+    
+    <p>Explore available savings plans and invest.</p>
+    
+    <button class="btn-custom">Browse Plans</button>
+    
+    </div>
+    
+    
+    
+    <div class="feature-box glass-box" (click)="navigateToApplications()">
+    
+    <i class="fas fa-file-alt fa-3x highlight"></i>
+    
+    <h3>My Applications</h3>
+    
+    <p>Check the status of your applied plans.</p>
+    
+    <button class="btn-custom">Track Applications</button>
+    
+    </div>
+    
+    
+    
+    <div class="feature-box glass-box" (click)="navigateToEnquiries()">
+    
+    <i class="fas fa-question-circle fa-3x highlight"></i>
+    
+    <h3>Submit Enquiries</h3>
+    
+    <p>Ask questions and get financial advice.</p>
+    
+    <button class="btn-custom">Ask a Question</button>
+    
+    </div>
+    
+    
+    
+    <div class="feature-box glass-box" (click)="navigateToFeedback()">
+    
+    <i class="fas fa-star fa-3x highlight"></i>
+    
+    <h3>Give Feedback</h3>
+    
+    <p>Share your experience and suggestions.</p>
+    
+    <button class="btn-custom">Submit Feedback</button>
+    
+    </div>
+    
+    </div>
+    
+    </div>
+    
+    </section>
+    
+    </div>
+    

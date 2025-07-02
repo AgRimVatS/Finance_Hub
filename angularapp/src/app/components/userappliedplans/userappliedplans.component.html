@@ -1,0 +1,29 @@
+<div class="table-responsive" *ngIf="planApplication.length>0">
+    <table class="table table-bordered text-center">
+        <thead class="table-dark-maroon text-white">
+            <tr>
+                <th>S.No</th>
+                <th>Applied Amount</th>
+                <th>Application Date</th>
+                <th>Remarks</th>
+                <th>Status</th>
+                <th>Proof Document</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>`</tr>
+            <tr *ngFor="let f of planApplication ;let i = index">
+                <td>{{i+1}}</td>
+                <td>₹{{f.appliedAmount}}</td>
+                <td>{{f.date}}</td>
+                <td>{{f.remarks}}</td>
+                <td>{{f.status}}</td>
+                <td>{{f.image}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div *ngIf="planApplication.length===0">
+    <h2>No Plans Has been Applied</h2>
+</div>

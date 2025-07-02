@@ -1,0 +1,37 @@
+/* Navbar */
+.navbar-custom {
+    background-color: transparent;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color 0.3s ease;
+}
+.navbar-custom .navbar-brand {
+    font-size: 1.8rem;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.navbar-custom .navbar-brand:hover {
+    color: #EE4C7C;
+}
+
+.navbar-custom .navbar-links {
+    display: flex;
+    gap: 20px;
+}
+.navbar-custom .nav-link {
+    font-size: 1.2rem;
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: bold;
+}
+.navbar-custom .nav-link:hover {
+    color: #EE4C7C;
+}

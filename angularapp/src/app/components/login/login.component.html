@@ -1,0 +1,92 @@
+<!-- 
+<div class="login-page">
+    <div class="overlay"></div>
+    <div class="login-container">
+      <div class="form-wrapper">
+        <h2 class="login-title">Login</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()" class="login-form">
+          <div class="input-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" formControlName="email" class="form-control">
+            <div class="error-message" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+              <span *ngIf="loginForm.get('email')?.errors?.required">Email is required!</span>
+              <span *ngIf="loginForm.get('email')?.errors?.email">Invalid email format</span>
+            </div>
+          </div>
+  
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input [type]="showPassword ? 'text' : 'password'" id="password" formControlName="password" class="form-control">
+            <div class="error-message" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+              <span *ngIf="loginForm.get('password')?.errors?.required">Password is required!</span>
+            </div>
+          </div>
+  
+          <div class="checkbox-row">
+            <input type="checkbox" id="showPassword" (change)="togglePasswordVisibility()">
+            <label for="showPassword">Show Password</label>
+          </div>
+  
+          <button type="submit" class="btn-custom" [disabled]="!loginForm.valid">Login</button>
+        </form>
+        <a routerLink="/register" class="register-link">Don't have an account? Register here</a>
+      </div>
+    </div>
+  </div>
+  
+   -->
+
+
+
+
+
+
+   <!-- new  code  -->
+
+
+   <div class="login-page">
+    <div class="overlay"></div>
+    <div class="login-container">
+    <div class="form-wrapper">
+    <h2 class="login-title">Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()" class="login-form">
+    <div class="input-group">
+    <label for="email">Email</label>
+    <input type="email" id="email" formControlName="email" class="form-control">
+    <div class="error-message" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+    <span *ngIf="loginForm.get('email')?.errors?.required">Email is required!</span>
+    <span *ngIf="loginForm.get('email')?.errors?.email">Invalid email format</span>
+    </div>
+    </div>
+    <div class="input-group">
+    <label for="password">Password</label>
+    <input [type]="showPassword ? 'text' : 'password'" id="password" formControlName="password" class="form-control">
+    <div class="error-message" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+    <span *ngIf="loginForm.get('password')?.errors?.required">Password is required!</span>
+    </div>
+    </div>
+    <div class="checkbox-row">
+    <input type="checkbox" id="showPassword" (change)="togglePasswordVisibility()">
+    <label for="showPassword">Show Password</label>
+    </div>
+    <button type="submit" class="btn-custom" [disabled]="!loginForm.valid">Login</button>
+    </form>
+    <a routerLink="/register" class="register-link">Don't have an account? Register here</a>
+    </div>
+    </div>
+    <!-- Popup for error message -->
+    <div class="popup error" *ngIf="showErrorPopup">
+    <div class="popup-content">
+    <span class="close" (click)="closeErrorPopup()">&times;</span>
+    <p>{{ loginError }}</p>
+    </div>
+    </div>
+     
+      <!-- Popup for success message -->
+    <div class="popup success" *ngIf="showSuccessPopup">
+    <div class="popup-content">
+    <span class="close" (click)="closeSuccessPopup()">&times;</span>
+    <p>Login Successful!</p>
+    </div>
+    </div>
+    </div>

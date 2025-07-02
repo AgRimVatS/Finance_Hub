@@ -1,0 +1,311 @@
+To implement the functionality where a user applies for a plan and the application gets approved or rejected by an admin, you need to follow these steps:
+
+### **Steps to Implement the Plan Application Process**
+
+#### **1. User Applies for a Plan (via `PlanApplication`)**
+
+1. **Create a Plan Application Form:**
+   - The user will select a savings plan and fill out an application form. When the form is submitted, a new `PlanApplication` object is created.
+
+2. **Save the Plan Application:**
+   - On form submission, a `POST` request will be sent to your backend to create the application (with status as "PENDING").
+
+#### **2. Admin Views and Approves/Rejects Applications**
+
+1. **Admin Views Pending Applications:**
+   - The admin can view the list of `PlanApplications` with status "PENDING".
+   
+2. **Admin Approves or Rejects:**
+   - The admin will have the option to either approve or reject an application. 
+   - If the application is approved, its status is updated to "APPROVED".
+   - If the application is rejected, its status is updated to "REJECTED".
+
+### **Backend Implementation**
+
+---
+
+#### **1. `PlanApplicationController` - API Endpoints**
+
+1. **Apply for a Plan (User applies for a plan)**
+
+```java
+@RequestMapping("/apply")
+@PreAuthorize("hasAuthority('ROLE_USER')")
+@PostMapping
+public ResponseEntity<ApiResponse<PlanApplication>> applyForPlan(@RequestBody PlanApplication planApplication) {
+    try {
+        PlanApplication savedApplication = planApplicationService.applyForPlan(planApplication);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(new ApiResponse<>(true, "Application submitted successfully", savedApplication));
+    } catch (Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(new ApiResponse<>(false, "Failed to apply for plan", null));
+    }
+}
+```
+
+2. **Get All Pending Applications (Admin only)**
+
+```java
+@PreAuthorize("hasAuthority('ROLE_ADMIN')")
+@GetMapping("/pending")
+public ResponseEntity<ApiResponse<List<PlanApplication>>> getPendingApplications() {
+    List<PlanApplication> pendingApplications = planApplicationService.getPendingApplications();
+    return ResponseEntity.ok(new ApiResponse<>(true, "Pending applications retrieved", pendingApplications));
+}
+```
+
+3. **Approve or Reject Application (Admin only)**
+
+```java
+@PreAuthorize("hasAuthority('ROLE_ADMIN')")
+@PutMapping("/approve/{applicationId}")
+public ResponseEntity<ApiResponse<PlanApplication>> approveApplication(@PathVariable Long applicationId) {
+    PlanApplication approvedApplication = planApplicationService.updateApplicationStatus(applicationId, "APPROVED");
+    if (approvedApplication != null) {
+        return ResponseEntity.ok(new ApiResponse<>(true, "Application approved", approvedApplication));
+    }
+    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+            .body(new ApiResponse<>(false, "Failed to approve application", null));
+}
+
+@PreAuthorize("hasAuthority('ROLE_ADMIN')")
+@PutMapping("/reject/{applicationId}")
+public ResponseEntity<ApiResponse<PlanApplication>> rejectApplication(@PathVariable Long applicationId) {
+    PlanApplication rejectedApplication = planApplicationService.updateApplicationStatus(applicationId, "REJECTED");
+    if (rejectedApplication != null) {
+        return ResponseEntity.ok(new ApiResponse<>(true, "Application rejected", rejectedApplication));
+    }
+    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+            .body(new ApiResponse<>(false, "Failed to reject application", null));
+}
+```
+
+---
+
+#### **2. `PlanApplicationService` - Service Layer**
+
+```java
+@Service
+public class PlanApplicationServiceImpl implements PlanApplicationService {
+
+    @Autowired
+    private PlanApplicationRepository planApplicationRepo;
+
+    @Autowired
+    private SavingsPlanRepository savingsPlanRepo;
+
+    @Autowired
+    private UserRepository userRepo;
+
+    // Apply for a Plan
+    @Override
+    public PlanApplication applyForPlan(PlanApplication planApplication) {
+        // Set status to "PENDING"
+        planApplication.setStatus("PENDING");
+        planApplication.setDate(LocalDate.now());
+        return planApplicationRepo.save(planApplication);
+    }
+
+    // Get all Pending Applications
+    @Override
+    public List<PlanApplication> getPendingApplications() {
+        return planApplicationRepo.findByStatus("PENDING");
+    }
+
+    // Approve/Reject Application
+    @Override
+    public PlanApplication updateApplicationStatus(Long applicationId, String status) {
+        Optional<PlanApplication> applicationOptional = planApplicationRepo.findById(applicationId);
+        if (applicationOptional.isPresent()) {
+            PlanApplication application = applicationOptional.get();
+            application.setStatus(status);
+            return planApplicationRepo.save(application);
+        }
+        return null;
+    }
+}
+```
+
+---
+
+#### **3. `PlanApplicationRepository` - Repository Layer**
+
+```java
+@Repository
+public interface PlanApplicationRepository extends JpaRepository<PlanApplication, Long> {
+
+    List<PlanApplication> findByStatus(String status); // Find by status (e.g. PENDING)
+}
+```
+
+---
+
+### **Frontend Implementation**
+
+---
+
+#### **1. User Side: Apply for Plan**
+
+1. **Component (`apply-plan.component.ts`)**
+
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { SavingsPlanService } from '../services/savings-plan.service';
+import { PlanApplicationService } from '../services/plan-application.service';  // Service to handle PlanApplication
+
+@Component({
+  selector: 'app-apply-plan',
+  templateUrl: './apply-plan.component.html',
+  styleUrls: ['./apply-plan.component.css']
+})
+export class ApplyPlanComponent implements OnInit {
+  applyForm: FormGroup;
+
+  constructor(
+    private fb: FormBuilder,
+    private savingsPlanService: SavingsPlanService,
+    private planApplicationService: PlanApplicationService  // Injecting the service
+  ) {
+    this.applyForm = this.fb.group({
+      planId: [''],  // The savings plan the user selects
+      appliedAmount: ['']
+    });
+  }
+
+  ngOnInit(): void {}
+
+  applyForPlan() {
+    const planId = this.applyForm.value.planId;
+    const appliedAmount = this.applyForm.value.appliedAmount;
+
+    const application = {
+      savingsPlan: { savingsPlanId: planId }, // Set the savings plan from the selected planId
+      appliedAmount: appliedAmount,
+      status: 'PENDING'
+    };
+
+    this.planApplicationService.applyForPlan(application).subscribe(
+      (response) => {
+        console.log('Application submitted successfully', response);
+      },
+      (error) => {
+        console.error('Failed to apply', error);
+      }
+    );
+  }
+}
+```
+
+2. **Service to Apply for Plan**
+
+```typescript
+@Injectable({
+  providedIn: 'root'
+})
+export class PlanApplicationService {
+  backendUrl = 'http://yourapiurl/api/planapplications';
+
+  constructor(private http: HttpClient) {}
+
+  applyForPlan(application: any) {
+    return this.http.post(`${this.backendUrl}/apply`, application);
+  }
+}
+```
+
+---
+
+#### **2. Admin Side: Approve/Reject Applications**
+
+1. **Component (`manage-applications.component.ts`)**
+
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { PlanApplicationService } from '../services/plan-application.service';
+
+@Component({
+  selector: 'app-manage-applications',
+  templateUrl: './manage-applications.component.html',
+  styleUrls: ['./manage-applications.component.css']
+})
+export class ManageApplicationsComponent implements OnInit {
+  applications: any[] = [];
+
+  constructor(private planApplicationService: PlanApplicationService) {}
+
+  ngOnInit(): void {
+    this.loadPendingApplications();
+  }
+
+  loadPendingApplications() {
+    this.planApplicationService.getPendingApplications().subscribe(
+      (data) => {
+        this.applications = data.data;
+      },
+      (error) => {
+        console.error('Error fetching applications', error);
+      }
+    );
+  }
+
+  approveApplication(applicationId: number) {
+    this.planApplicationService.approveApplication(applicationId).subscribe(
+      (data) => {
+        this.loadPendingApplications(); // Refresh the list after approval
+      },
+      (error) => {
+        console.error('Error approving application', error);
+      }
+    );
+  }
+
+  rejectApplication(applicationId: number) {
+    this.planApplicationService.rejectApplication(applicationId).subscribe(
+      (data) => {
+        this.loadPendingApplications(); // Refresh the list after rejection
+      },
+      (error) => {
+        console.error('Error rejecting application', error);
+      }
+    );
+  }
+}
+```
+
+---
+
+#### **3. PlanApplicationService for Admin**
+
+```typescript
+@Injectable({
+  providedIn: 'root'
+})
+export class PlanApplicationService {
+  backendUrl = 'http://yourapiurl/api/planapplications';
+
+  constructor(private http: HttpClient) {}
+
+  getPendingApplications() {
+    return this.http.get(`${this.backendUrl}/pending`);
+  }
+
+  approveApplication(applicationId: number) {
+    return this.http.put(`${this.backendUrl}/approve/${applicationId}`, {});
+  }
+
+  rejectApplication(applicationId: number) {
+    return this.http.put(`${this.backendUrl}/reject/${applicationId}`, {});
+  }
+}
+```
+
+---
+
+### **Conclusion**
+- **User Side:** Users apply for a savings plan, and it gets submitted with a status of "PENDING".
+- **Admin Side:** Admin can view all pending applications, and approve/reject them based on the application status.
+- **Flow:** Only **approved** applications are enrolled, while **rejected** applications are discarded.
+
+This completes the flow of users applying for a plan, admins reviewing, and then updating the status based on approval or rejection!

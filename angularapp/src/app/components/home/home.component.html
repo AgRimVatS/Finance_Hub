@@ -1,0 +1,94 @@
+<div class="home-container">
+    <!-- Hero Section with Video -->
+    <div class="hero-section">
+        <video autoplay muted loop class="background-video">
+            <source src="assets/video.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+        <div class="glass-content">
+            <h1>Welcome to <span class="highlight">FinanceHub</span></h1>
+            <p>
+                <strong>Your trusted partner for financial growth. Explore investments, savings, and personalized loan
+                    options.</strong>
+            </p>
+            <a href="#about" class="btn-custom">Explore More</a>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="glass-section">
+        <div class="section-content glass-box">
+            <h2>Why Choose <span class="highlight">FinanceHub</span>?</h2>
+            <p>We offer transparent, secure, and competitive financial solutions tailored to your needs.</p>
+            <p class="tagline">Jeevan ke saath bhi Jeevan ke baad bhi</p>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <div class="section-content">
+            <h2>Our <span class="highlight">Features</span></h2>
+            <div class="features-grid">
+                <div class="feature-box glass-box">
+                    <i class="fas fa-piggy-bank"></i>
+                    <h3>Smart Savings</h3>
+                    <p>Optimize your savings with our high-yield plans.</p>
+                </div>
+                <div class="feature-box glass-box">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Investment Strategies</h3>
+                    <p>Explore top-performing investment opportunities.</p>
+                </div>
+                <div class="feature-box glass-box">
+                    <i class="fas fa-hand-holding-usd"></i>
+                    <h3>Secure Budget Planning</h3>
+                    <p>Get plans with the best rates and flexible terms.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="glass-section">
+        <div class="section-content">
+            <h2>Meet Our <span class="highlight">Team</span></h2>
+            <div class="slider-container glass-box">
+                <button class="prev" (click)="prevSlide()">&#10094;</button>
+                <div class="slider" [style.transform]="'translateX(-' + (currentIndex * 100) + '%)'">
+                    <div class="slide" *ngFor="let member of teamMembers">
+                        <img [src]="member.image" [alt]="member.name">
+                        <h3>{{ member.name }}</h3>
+                        <p>{{ member.role }}</p>
+                        <button class="btn-custom" (click)="showWork(member)">View Work</button>
+                    </div>
+                </div>
+                <button class="next" (click)="nextSlide()">&#10095;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="section-content glass-box">
+            <h2>Get In <span class="highlight">Touch</span></h2>
+            <p>Need expert financial advice? Contact us today!</p>
+            <a href="mailto:contact@financehub.com" class="btn-custom">Email Us</a>
+        </div>
+    </section>
+
+    <!-- Popup -->
+    <div class="popup-overlay" [class.active]="showPopup" (click)="closePopup()">
+        <div class="popup" (click)="$event.stopPropagation()">
+            <i class="fas fa-times close-btn" (click)="closePopup()"></i>
+            <div class="popup-content">
+                <h2>{{selectedMember?.name}}</h2>
+                <div class="info_container">
+                    <h3 class="highlight">{{selectedMember?.role}}</h3>
+                    <p class="work-description">{{selectedWork}}</p>
+                    <p class="work-description">{{selectedMember.desc}}</p>
+                    <button class="btn-custom" (click)="closePopup()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

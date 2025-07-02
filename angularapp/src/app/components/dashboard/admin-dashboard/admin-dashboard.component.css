@@ -1,0 +1,165 @@
+/* Root Variables */
+:root {
+  --primary-gradient: linear-gradient(135deg, hashtag#6366f1 0%, hashtag#4f46e5 100%);
+  --secondary-gradient: linear-gradient(135deg, hashtag#64748b 0%, #475569 100%);
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-shadow: rgba(0, 0, 0, 0.1);
+ }
+ 
+ /* Main Container */
+ .admin-dashboard {
+  margin-top: 190px !important; /* Space for fixed navbar */
+  min-height: 100vh;
+  width: 100%;
+  background: black !important;
+  background-attachment: fixed;
+  position: relative;
+  overflow-x: hidden;
+  
+ }
+ .container{
+  padding-top: 8%;
+ }
+ 
+ /* Back Button */
+ .back-button {
+  padding-top: 8%;
+  position: fixed;
+  top: 90px; /* Positioned below navbar */
+  left: 20px;
+  z-index: 1000;
+  padding: 8px 16px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  color: white;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+ }
+ 
+ /* Main Content Container */
+ .dashboard-content {
+  padding: 2rem;
+  margin-top: 20px; /* Additional space after back button */
+  width: 100%;
+  display: grid;
+  gap: 2rem;
+ }
+ 
+ /* Glass Effect Component */
+ .glass-component {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px var(--glass-shadow);
+  color: white;
+ }
+ 
+ /* Stats Section */
+ .stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem;
+ }
+ 
+ .stat-card {
+  composes: glass-component;
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.2s;
+ }
+ 
+ .stat-card:hover {
+  transform: translateY(-5px);
+ }
+ 
+ /* Charts Section */
+ .charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem;
+ }
+ 
+ .chart-container {
+  composes: glass-component;
+  position: relative;
+  padding: 1.5rem;
+  min-height: 300px;
+ }
+ 
+ /* Tables Section */
+ .table-section {
+  composes: glass-component;
+  padding: 1.5rem;
+  margin: 1.5rem;
+ }
+ 
+ .table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+ }
+ 
+ table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+ }
+ 
+ th, td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--glass-border);
+ }
+ 
+ /* Fullscreen Modal */
+ .fullscreen-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+ }
+ 
+ /* Responsive Adjustments */
+ @media (max-width: 768px) {
+  .admin-dashboard {
+  padding-top: 60px;
+  }
+  
+  .dashboard-content {
+  padding: 1rem;
+  }
+  
+  .back-button {
+  top: 70px;
+  }
+  
+  .stats-container {
+  grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .charts-grid {
+  grid-template-columns: 1fr;
+  }
+ }
+ 
+ @media (max-width: 480px) {
+  .stats-container {
+  grid-template-columns: 1fr;
+  }
+  
+  .table-section {
+  margin: 1rem;
+  }
+ }

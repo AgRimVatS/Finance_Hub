@@ -1,0 +1,54 @@
+<div class="container1">
+  <div class="container">
+    <h2 class="heading">Savings Plans</h2>
+    <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+      <input style="border: none; border-radius: 8px; outline: none; color:white; width: 70%; background-color: transparent; padding: 2px 8px; text-align: center;" type="text" [(ngModel)]="search1" (input)="searchByInputEvent()" placeholder="Enter plan name to search...">
+      <button style="width: 25%;color: white;  background: rgba(255, 255, 255, 0.15)" (click)="sortByAsc()">Sort By Goal Amount Ascending</button>&nbsp;
+      <button style="width: 25%;color: white;  background: rgba(255, 255, 255, 0.15)" (click)="sortByDesc()">Sort By Goal Amount Descending</button>
+    </div>
+   
+<br>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Plan Name</th>
+          <th>Goal Amount</th>
+          <th>Time Frame (Years)</th>
+          <th>Risk Level</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <tr>
+          <td>1</td>
+          <td>DemoPlan</td>
+          <td>Rs.200</td>
+          <td>1</td>
+          <td>Medium</td>
+          <td>demoDescription</td>
+          <td>Active</td>
+          <td>
+            <button class="btn btn-main">Edit</button>
+            <button class="btn btn-secondary">Delete</button>
+          </td>
+        </tr> -->
+        <tr *ngFor="let item of arr;let i = index">
+          <td>{{i+1}}</td>
+          <td>{{item.name}}</td>
+          <td>₹{{item.goalAmount}}</td>
+          <td>{{item.timeFrame}}</td>
+          <td>{{item.riskLevel}}</td>
+          <td>{{item.description}}</td>
+          <td>{{item.status}}</td>
+          <td>
+            <button class="btn btn-main" *ngIf="item.status !== 'Inactive'" (click)="applyPlan(item?.savingsPlanId)">Apply</button>
+            <span *ngIf="item.status=='Inactive'">Apply Inactive</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

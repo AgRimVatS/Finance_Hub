@@ -1,0 +1,17 @@
+<div class="container my-5">
+    <h1>Add Enquiry</h1>
+    <form [formGroup]="enquiryForm" (ngSubmit)="addnewEnquiry()">
+        <div class="mb-3">
+            <label for="message" class="form-label">Message</label>
+            <textarea class="form-control" id="message" formControlName="message" rows="10"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Enquiry</button>
+    </form>
+</div>
+
+<div class="popup-overlay" id="popup" *ngIf="pop">
+    <div class="popup">
+        <p>Enquiry added successfully!</p>
+        <button class="btn btn-secondary" (click)="toggle()">Close</button>
+    </div>
+</div>

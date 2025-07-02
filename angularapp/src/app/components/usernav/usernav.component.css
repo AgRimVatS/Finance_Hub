@@ -1,0 +1,85 @@
+/* Navbar */
+.navbar-custom {
+    background-color: transparent;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbar-custom .navbar-brand {
+    font-size: 1.8rem;
+    color: #EE4C7C;
+    font-weight: bold;
+}
+.navbar-custom .navbar-subtext {
+    font-size: 1rem;
+    color: #EE4C7C;
+    opacity: 0.7;
+    margin-left: 10px;
+}
+.navbar-toggler {
+    border: none;
+    background: transparent;
+    color: #E3E2DF;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+.overlay.show .navbar-toggler {
+    color: #EE4C7C; /* Change color to white when menu is open */
+}
+
+/* Full-screen overlay */
+.overlay {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    transition: left 0.4s ease-in-out;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 80px; /* Added padding so forms don’t collide */
+}
+.overlay.show {
+    left: 0;
+}
+.overlay-content {
+    text-align: center;
+    width: 100%;
+    padding: 20px; /* Added padding to avoid overlap */
+}
+.overlay-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+.overlay a {
+    display: block;
+    font-size: 1.8rem;
+    color: #E3E2DF;
+    padding: 15px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.overlay a:hover {
+    color: #EE4C7C;
+}
+.overlay .logout {
+    color: #EE4C7C;
+    font-weight: bold;
+}
+.overlay .logout:hover {
+    color: #9A1750;
+}

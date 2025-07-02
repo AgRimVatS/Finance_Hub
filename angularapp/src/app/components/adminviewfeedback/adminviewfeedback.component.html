@@ -1,0 +1,33 @@
+<div class="container my-5">
+    <h1 class="text-center" style="color: #9A1750;">Feedback Details</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>User Name</th>
+                <th>Feedback</th>
+                <th>Posted Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let f of feedbacks; let i = index">
+                <td>{{i + 1}}</td>
+                <td>{{f.user.username}}</td>
+                <td>{{f.feedbackText}}</td>
+                <td>{{f.date}}</td>
+                <td><button class="btn btn-show-profile" (click)="showProfile(f.user)">Show Profile</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="popup-overlay" id="popup">
+    <div class="popup">
+        <h2>User Details:</h2>
+        <p>Email: <span>{{ selectedUser.email }}</span></p>
+        <p>Username: <span>{{ selectedUser.username }}</span></p>
+        <p>Mobile Number: <span>{{ selectedUser.mobileNumber }}</span></p>
+        <button class="btn btn-secondary" (click)="toggle()">Close</button>
+    </div>
+</div>

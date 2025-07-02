@@ -1,0 +1,128 @@
+:root {
+  --dark-maroon: #5D001E;
+  --light-gray: #E3E2DF;
+  --light-pink: #E3AFBC;
+  --dark-pink: #9A1750;
+  --bright-pink: #EE4C7C;
+  --white: #FFFFFF;
+}
+
+/* Full Page Styling */
+body {
+  background-color: var(--light-gray);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  
+}
+
+.error{
+  color: red;
+}
+/* Glassmorphic Form Container */
+.container {
+  max-width: 80%;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  position: relative;
+  margin: auto;
+  top: 15%;
+  z-index: 2;
+}
+
+/* Form Heading */
+h1 {
+ 
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: white;
+}
+
+/* Labels */
+.form-label {
+  font-weight: 600;
+
+  display: block;
+  text-align: left;
+  margin-bottom: 5px;
+  color: white;
+}
+
+/* Textarea Styling */
+textarea {
+  width: 100%;
+  height: 120px;
+  padding: 10px;
+  border: 1px solid rgba(93, 0, 30, 0.3);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  color: white;
+  font-size: 1rem;
+  resize: none;
+  outline: none;
+}
+
+/* Buttons */
+.btn-primary, .btn-secondary {
+  width: 100%;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 8px;
+  border: none;
+  background: #EE4C7C;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+  background: #9A1750;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(154, 23, 80, 0.3);
+}
+
+/* Success Popup */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  color: white;
+}
+.popup-overlay.active{
+  display: flex;
+  
+}
+.blur{
+  transition: filter 0.5 ease;
+}
+
+.blur.active{
+  filter: blur(5px);
+}
+
+/* Popup Box */
+.popup {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  color: white;
+}

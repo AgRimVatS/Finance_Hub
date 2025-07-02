@@ -1,0 +1,116 @@
+/* Background and layout */
+.form-container {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    padding-top: 100px; /* Space for navbar */
+    overflow: hidden;
+    background-image: url('../../../assets/admin.jpg'); /* Background image */
+    background-size: cover;
+    background-position: center;
+}
+
+/* Overlay */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: -1;
+}
+
+/* Glass effect container */
+.container {
+    max-width: 600px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);  /* Slightly stronger shadow */
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+/* Form title */
+h1 {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: 15px;
+    padding: 0.5rem;
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+}
+
+/* Divider */
+.divider {
+    background-color: #9a1750;
+    height: 2px;
+    margin: 10px 0;
+}
+
+/* Form labels */
+.form-label {
+    color: #ffffff; /* Lighter shade for better contrast */
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    background: none; /* Remove background color */
+    padding: 0; /* Remove padding */
+    border-radius: 0; /* Remove border radius */
+}
+
+/* Form inputs */
+.form-control {
+    margin-top: 0.25rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    background: rgba(255, 255, 255, 0.3);
+    outline: none;
+}
+
+/* Buttons */
+.btn-main {
+    background: linear-gradient(135deg, #ee4c7c, #9a1750);
+    color: white;
+    border-radius: 25px;
+    padding: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-main:hover {
+    background: #e3afbc;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(238, 76, 124, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.1rem;
+    }
+
+    .btn-main {
+        font-size: 0.9rem;
+        padding: 0.4rem;
+    }
+}

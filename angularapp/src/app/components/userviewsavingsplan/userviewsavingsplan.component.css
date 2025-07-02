@@ -1,0 +1,89 @@
+/* Glass Door Effect for Table Container */
+.container {
+  max-width: 90%;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  margin-top: 120px; /* Increased space below the navbar */
+  position: relative;
+  z-index: 2;
+}
+
+/* Heading */
+.heading {
+  color: #ffffff;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* Table Styling */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Table Header */
+.table-bordered th {
+  background: rgba(255, 255, 255, 0.2);
+  color: #E3E2DF;
+  padding: 12px;
+  border-radius: 8px 8px 0 0;
+}
+
+/* Table Rows with Frosted Glass Effect */
+.table-bordered td {
+  padding: 10px;
+  border: 1px solid rgba(93, 0, 30, 0.5);
+  background: rgba(255, 255, 255, 0.2);
+  color: #E3E2DF; /* Changed to light gray for better visibility */
+  backdrop-filter: blur(5px);
+}
+
+/* Buttons */
+.btn-main {
+  background: linear-gradient(135deg, #EE4C7C, #9A1750);
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-main:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(238, 76, 124, 0.3);
+}
+
+.btn-secondary {
+  background: rgba(227, 175, 188, 0.7);
+  color: #5D001E;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: #EE4C7C;
+  color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+    margin-top: 100px;
+  }
+
+  .table-bordered td, .table-bordered th {
+    padding: 8px;
+    font-size: 14px;
+  }
+}

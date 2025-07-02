@@ -1,0 +1,168 @@
+<div class="home-container">
+
+    <!-- Header Section -->
+
+    <div class="hero-section">
+
+        <div class="video-overlay"></div>
+
+        <div class="glass-content">
+
+            <h1>Welcome to <span class="highlight">FinanceHub</span> Admin</h1>
+
+            <p><strong>Manage users, savings plans, applications, and feedback efficiently.</strong></p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Stats Section -->
+
+    <section class="stats-section">
+
+        <div class="features-grid">
+
+            <div class="feature-box glass-box">
+
+                <i class="fas fa-users fa-2x highlight"></i>
+
+                <h3>Total Users</h3>
+
+                <p class="highlight">{{stats.totalUsers}}</p>
+
+            </div>
+
+            <div class="feature-box glass-box">
+
+                <i class="fas fa-file-alt fa-2x highlight"></i>
+
+                <h3>Pending Applications</h3>
+
+                <p class="highlight">{{stats.pendingApplications}}</p>
+
+            </div>
+
+            <div class="feature-box glass-box">
+
+                <i class="fas fa-piggy-bank fa-2x highlight"></i>
+
+                <h3>Active Savings Plans</h3>
+
+                <p class="highlight">{{stats.activePlans}}</p>
+
+            </div>
+
+            <div class="feature-box glass-box">
+
+                <i class="fas fa-question-circle fa-2x highlight"></i>
+
+                <h3>Total Enquiries</h3>
+
+                <p class="highlight">{{stats.totalEnquiries}}</p>
+
+            </div>
+
+            <div class="feature-box glass-box">
+
+                <i class="fas fa-comments fa-2x highlight"></i>
+
+                <h3>Feedback Received</h3>
+
+                <p class="highlight">{{stats.totalFeedback}}</p>
+
+            </div>
+            <div class="feature-box glass-box" [routerLink]="['/manager/view/dash']">
+
+                <i class="fas fa-question-circle fa-2x highlight"></i>
+
+                <h3 class="insights-link"><i class="fas fa-chart-line"></i> More Insights</h3>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- <div class="feature-box glass-box">
+       
+        <a [routerLink]="['/manager/view/dash']" class="insights-link">
+        <i class="fas fa-chart-line"></i> More Insights
+        </a>
+       </div> -->
+
+
+
+    <!-- Management Section -->
+
+    <section id="management">
+
+        <div class="section-content">
+
+            <h2>Management <span class="highlight">Tools</span></h2>
+
+            <div class="features-grid">
+
+                <div class="feature-box glass-box" (click)="navigateToPlans()">
+
+                    <i class="fas fa-piggy-bank fa-3x highlight"></i>
+
+                    <h3>Manage Savings Plans</h3>
+
+                    <p>Create, update, or remove savings plans.</p>
+
+                    <button class="btn-custom">Go to Plans</button>
+
+                </div>
+
+
+
+                <div class="feature-box glass-box" (click)="navigateToApplications()">
+
+                    <i class="fas fa-file-alt fa-3x highlight"></i>
+
+                    <h3>Review Applications</h3>
+
+                    <p>Approve or reject user applications.</p>
+
+                    <button class="btn-custom">View Applications</button>
+
+                </div>
+
+
+
+                <div class="feature-box glass-box" (click)="navigateToEnquiries()">
+
+                    <i class="fas fa-question-circle fa-3x highlight"></i>
+
+                    <h3>Manage Enquiries</h3>
+
+                    <p>Respond to user questions and concerns.</p>
+
+                    <button class="btn-custom">View Enquiries</button>
+
+                </div>
+
+
+
+                <div class="feature-box glass-box" (click)="navigateToFeedback()">
+
+                    <i class="fas fa-comments fa-3x highlight"></i>
+
+                    <h3>User Feedback</h3>
+
+                    <p>See what users say about your service.</p>
+
+                    <button class="btn-custom">View Feedback</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>

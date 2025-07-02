@@ -1,0 +1,75 @@
+<div class="background-video">
+  <video id="backgroundVideo" muted loop>
+    <source src="../../../assets/videoplayback.mp4" type="video/mp4">
+  </video>
+</div>
+<div class="savings-page">
+  <div class="overlay"></div>
+  <div class="savings-container">
+    <div class="form-wrapper">
+      <h2 class="savings-title">Create New Savings Plan</h2>
+      <form [formGroup]="form" (ngSubmit)="addSavingsPlan()" class="savings-form">
+        <div class="form-row">
+          <div class="input-group">
+            <label for="name">Plan Name:</label>
+            <input type="text" id="name" formControlName="name" class="form-control">
+            <div class="error-message" *ngIf="form.get('name').invalid && form.get('name').touched">
+              <span *ngIf="form.get('name').errors?.required">Plan Name is required!</span>
+              <span *ngIf="form.get('name').errors?.pattern">Invalid characters in Plan Name.</span>
+            </div>
+          </div>
+          <div class="input-group">
+            <label for="goalAmount">Goal Amount (₹):</label>
+            <input type="number" id="goalAmount" formControlName="goalAmount" class="form-control">
+            <div class="error-message" *ngIf="form.get('goalAmount').invalid && form.get('goalAmount').touched">
+              <span *ngIf="form.get('goalAmount').errors?.required">Goal Amount is required!</span>
+              <span *ngIf="form.get('goalAmount').errors?.min">Minimum Goal Amount is ₹100,000.</span>
+              <span *ngIf="form.get('goalAmount').errors?.max">Maximum Goal Amount is ₹1,000,000.</span>
+            </div>
+          </div>
+          <div class="input-group">
+            <label for="timeFrame">Time Frame (Years):</label>
+            <input type="number" id="timeFrame" formControlName="timeFrame" class="form-control">
+            <div class="error-message" *ngIf="form.get('timeFrame').invalid && form.get('timeFrame').touched">
+              <span *ngIf="form.get('timeFrame').errors?.required">Time Frame is required!</span>
+              <span *ngIf="form.get('timeFrame').errors?.min">Minimum Time Frame is 5 years.</span>
+              <span *ngIf="form.get('timeFrame').errors?.max">Maximum Time Frame is 25 years.</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-group">
+            <label for="riskLevel">Risk Level:</label>
+            <select id="riskLevel" formControlName="riskLevel" class="form-control">
+              <option value="" disabled>Select Risk Level</option>
+              <option *ngFor="let level of riskLevels" [value]="level">{{ level }}</option>
+            </select>
+            <div class="error-message" *ngIf="form.get('riskLevel').invalid && form.get('riskLevel').touched">
+              <span *ngIf="form.get('riskLevel').errors?.required">Risk Level is required!</span>
+            </div>
+          </div>
+          <div class="input-group">
+            <label for="status">Status:</label>
+            <select id="status" formControlName="status" class="form-control">
+              <option value="" disabled>Select Status</option>
+              <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+            </select>
+            <div class="error-message" *ngIf="form.get('status').invalid && form.get('status').touched">
+              <span *ngIf="form.get('status').errors?.required">Status is required!</span>
+            </div>
+          </div>
+          <div class="input-group">
+            <label for="description">Description:</label>
+            <textarea id="description" formControlName="description" class="form-control"></textarea>
+            <div class="error-message" *ngIf="form.get('description').invalid && form.get('description').touched">
+              <span *ngIf="form.get('description').errors?.required">Description is required!</span>
+              <span *ngIf="form.get('description').errors?.maxlength">Description cannot exceed 200 characters.</span>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn-custom" [disabled]="!form.valid">Submit</button>
+        <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+      </form>
+    </div>
+  </div>
+</div>

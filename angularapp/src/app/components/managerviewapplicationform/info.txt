@@ -1,0 +1,74 @@
+import { Component, OnInit } from '@angular/core';
+import { PlanApplicationService } from '../services/plan-application.service';
+
+@Component({
+  selector: 'app-manage-applications',
+  templateUrl: './manage-applications.component.html',
+  styleUrls: ['./manage-applications.component.css']
+})
+export class ManageApplicationsComponent implements OnInit {
+  applications: any[] = [];
+
+  constructor(private planApplicationService: PlanApplicationService) {}
+
+  ngOnInit(): void {
+    this.loadPendingApplications();
+  }
+
+  loadPendingApplications() {
+    this.planApplicationService.getPendingApplications().subscribe(
+      (data) => {
+        this.applications = data.data;
+      },
+      (error) => {
+        console.error('Error fetching applications', error);
+      }
+    );
+  }
+
+  approveApplication(applicationId: number) {
+    this.planApplicationService.approveApplication(applicationId).subscribe(
+      (data) => {
+        this.loadPendingApplications(); // Refresh the list after approval
+      },
+      (error) => {
+        console.error('Error approving application', error);
+      }
+    );
+  }
+
+  rejectApplication(applicationId: number) {
+    this.planApplicationService.rejectApplication(applicationId).subscribe(
+      (data) => {
+        this.loadPendingApplications(); // Refresh the list after rejection
+      },
+      (error) => {
+        console.error('Error rejecting application', error);
+      }
+    );
+  }
+}
+
+
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class PlanApplicationService {
+  backendUrl = 'http://yourapiurl/api/planapplications';
+
+  constructor(private http: HttpClient) {}
+
+  getPendingApplications() {
+    return this.http.get(`${this.backendUrl}/pending`);
+  }
+
+  approveApplication(applicationId: number) {
+    return this.http.put(`${this.backendUrl}/approve/${applicationId}`, {});
+  }
+
+  rejectApplication(applicationId: number) {
+    return this.http.put(`${this.backendUrl}/reject/${applicationId}`, {});
+  }
+}

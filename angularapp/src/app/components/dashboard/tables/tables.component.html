@@ -1,0 +1,19 @@
+<h3>Recent Applications</h3>
+<table>
+  <tr *ngFor="let app of recentApplications">
+    <td>{{ app?.planApplicationId}}</td>
+    <td>{{ app?.appliedAmount }}</td>
+    <td>{{ app.status }}</td>
+    <td>{{ app.date }}</td>
+    <td>{{ app.remarks }}</td>
+  </tr>
+</table>
+
+<h3>Recent Enquiries</h3>
+<table>
+  <tr *ngFor="let enquiry of recentEnquiries">
+    <td>{{ enquiry?.user?.username }}</td>
+    <td>{{ enquiry.message }}</td>
+    <td>{{ enquiry.status }}</td>
+  </tr>
+</table>

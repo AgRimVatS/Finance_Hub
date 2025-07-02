@@ -1,0 +1,83 @@
+<div class="registration-page">
+    <div class="overlay"></div>
+    <div class="registration-container">
+        <div class="form-wrapper">
+            <h2 class="register-title">Create Account</h2>
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="registration-form">
+                <!-- Form fields remain unchanged -->
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" formControlName="username" class="form-control">
+                        <div class="error-message" *ngIf="registerForm.get('username').invalid && registerForm.get('username').touched">
+                            <span *ngIf="registerForm.get('username').errors?.required">Username is required!</span>
+                            <span *ngIf="registerForm.get('username').errors?.pattern">No special characters allowed</span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" formControlName="email" class="form-control">
+                        <div class="error-message" *ngIf="registerForm.get('email').invalid && registerForm.get('email').touched">
+                            <span *ngIf="registerForm.get('email').errors?.required">Email is required!</span>
+                            <span *ngIf="registerForm.get('email').errors?.email">Invalid email format</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input [type]="showPassword ? 'text' : 'password'" id="password" formControlName="password" class="form-control">
+                        <div class="error-message" *ngIf="registerForm.get('password').invalid && registerForm.get('password').touched">
+                            <span *ngIf="registerForm.get('password').errors?.required">Password is required!</span>
+                            <span *ngIf="registerForm.get('password').errors?.pattern">Password must be at least 6 characters with upper, lower, number, and special char</span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input [type]="showPassword ? 'text' : 'password'" id="confirmPassword" formControlName="confirmPassword" class="form-control">
+                        <div class="error-message" *ngIf="registerForm.get('confirmPassword').invalid && registerForm.get('confirmPassword').touched">
+                            <span *ngIf="registerForm.get('confirmPassword').errors?.mismatch">Passwords don't match!</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="mobileNumber">Mobile Number</label>
+                        <input type="text" id="mobileNumber" formControlName="mobileNumber" class="form-control">
+                        <div class="error-message" *ngIf="registerForm.get('mobileNumber').invalid && registerForm.get('mobileNumber').touched">
+                            <span *ngIf="registerForm.get('mobileNumber').errors?.pattern">Invalid mobile number</span>
+                            <span *ngIf="registerForm.get('mobileNumber').errors?.required">Mobile Number is required!</span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="userRole">Role</label>
+                        <select id="userRole" formControlName="userRole" class="form-control">
+                            <option value="" disabled selected>Select Role</option>
+                            <option value="USER">User</option>
+                            <option value="ADMIN">Admin</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row checkbox-row">
+                    <div class="show-password">
+                        <input type="checkbox" id="showPassword" (change)="togglePasswordVisibility()">
+                        <label for="showPassword">Show Password</label>
+                    </div>
+                </div>
+                <button type="submit" class="btn-custom" [disabled]="!registerForm.valid">
+                    Create Account
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Popup Modal -->
+<div id="successPopup" class="popup-modal">
+    <div class="popup-content">
+        <span class="close-popup" onclick="closePopup()">&times;</span>
+        <h2>Registration Successful</h2>
+        <p>Your account has been created successfully!</p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+</div>

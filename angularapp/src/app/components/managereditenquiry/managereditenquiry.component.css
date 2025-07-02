@@ -1,0 +1,58 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #E3E2DF;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #5D001E;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+  font-size: 24px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 50px auto; /* Uncommented margin */
+  padding: 20px; /* Uncommented padding */
+  position: relative;
+  z-index: 100;
+  top: 8%;
+  background: rgba(255, 255, 255, 0.1); /* Glass effect background */
+  backdrop-filter: blur(10px); /* Glass effect blur */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #ffffff; /* Changed to white */
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #ffffff; /* Changed to white */
+}
+
+input[type="text"], select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1); /* Glass effect background */
+  color: #ffffff; /* Changed to white */
+}
+
+.primary-btn {
+  background-color: #EE4C7C; /* Changed to pink */
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+

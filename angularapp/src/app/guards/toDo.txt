@@ -1,0 +1,90 @@
+For routes that are common to both admin and user roles, you can modify the `AuthGuard` to allow access to multiple roles. Here's how you can update the `AuthGuard` and the routing configuration to handle this:
+
+### Updated `AuthGuard`:
+
+```typescript
+import { Injectable } from '@angular/core';
+import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AuthService } from '../services/auth.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthGuard implements CanActivate {
+
+  constructor(private authService: AuthService, private router: Router) {}
+
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    const expectedRoles = route.data.expectedRoles;
+    const currentRole = this.authService.getRole();
+
+    if (!this.authService.isLoggedIn() || !expectedRoles.includes(currentRole)) {
+      this.router.navigate(['/error']);
+      return false;
+    }
+    return true;
+  }
+}
+```
+
+### Updated Routing Configuration:
+
+You can specify multiple roles for each route using the `expectedRoles` property. Here's how you can update your routes:
+
+```typescript
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { LoginComponent } from './components/login/login.component';
+import { ErrorComponent } from './components/error/error.component';
+import { HomeComponent } from './components/home/home.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { AdminviewfeedbackComponent } from './components/adminviewfeedback/adminviewfeedback.component';
+import { CreatesavingsplanComponent } from './components/createsavingsplan/createsavingsplan.component';
+import { ManagereditenquiryComponent } from './components/managereditenquiry/managereditenquiry.component';
+import { ManagerviewapplicationformComponent } from './components/managerviewapplicationform/managerviewapplicationform.component';
+import { ManagerviewenquiriesComponent } from './components/managerviewenquiries/managerviewenquiries.component';
+import { UseraddfeedbackComponent } from './components/useraddfeedback/useraddfeedback.component';
+import { UserappliedplansComponent } from './components/userappliedplans/userappliedplans.component';
+import { UserplanapplicationformComponent } from './components/userplanapplicationform/userplanapplicationform.component';
+import { UserviewenquiryComponent } from './components/userviewenquiry/userviewenquiry.component';
+import { UserviewfeedbackComponent } from './components/userviewfeedback/userviewfeedback.component';
+import { UserviewsavingsplanComponent } from './components/userviewsavingsplan/userviewsavingsplan.component';
+import { ViewsavingsplanComponent } from './components/viewsavingsplan/viewsavingsplan.component';
+import { UseraddenquiryComponent } from './components/useraddenquiry/useraddenquiry.component';
+import { AuthGuard } from './guards/auth.guard'; // Import the AuthGuard
+
+const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'error', component: ErrorComponent },
+  { path: 'register', component: RegistrationComponent },
+  { path: 'manager/view/feedback', component: AdminviewfeedbackComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin'] } },
+  { path: 'manager/create/savings/plan', component: CreatesavingsplanComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin'] } },
+  { path: 'manager/edit/enquiry', component: ManagereditenquiryComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin'] } },
+  { path: 'manager/view/application/form', component: ManagerviewapplicationformComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin'] } },
+  { path: 'manager/view/enquiries', component: ManagerviewenquiriesComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin'] } },
+  { path: 'manager/view/savings/plan', component: ViewsavingsplanComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin'] } },
+  { path: 'user/add/feedback', component: UseraddfeedbackComponent, canActivate: [AuthGuard], data: { expectedRoles: ['user'] } },
+  { path: 'user/add/enquiry', component: UseraddenquiryComponent, canActivate: [AuthGuard], data: { expectedRoles: ['user'] } },
+  { path: 'user/applied/plans', component: UserappliedplansComponent, canActivate: [AuthGuard], data: { expectedRoles: ['user'] } },
+  { path: 'user/application/form', component: UserplanapplicationformComponent, canActivate: [AuthGuard], data: { expectedRoles: ['user'] } },
+  { path: 'user/view/enquiry', component: UserviewenquiryComponent, canActivate: [AuthGuard], data: { expectedRoles: ['user'] } },
+  { path: 'user/view/feedback', component: UserviewfeedbackComponent, canActivate: [AuthGuard], data: { expectedRoles: ['user'] } },
+  { path: 'user/view/feedback/:userId', component: UserviewfeedbackComponent, canActivate: [AuthGuard], data: { expectedRoles: ['user'] } },
+  { path: 'user/view/savings/plan', component: UserviewsavingsplanComponent, canActivate: [AuthGuard], data: { expectedRoles: ['user'] } },
+  { path: 'common/route', component: SomeCommonComponent, canActivate: [AuthGuard], data: { expectedRoles: ['admin', 'user'] } }, // Example of a common route
+  { path: '**', component: ErrorComponent },
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
+})
+export class AppRoutingModule {}
+```
+
+In this configuration, the `AuthGuard` checks if the user's role is included in the `expectedRoles` array for each route. This allows you to define routes that are accessible to both admins and users. If the user is not logged in or does not have the required role, they will be redirected to the error page.

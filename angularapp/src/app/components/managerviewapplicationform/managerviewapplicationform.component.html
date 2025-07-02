@@ -1,0 +1,58 @@
+<div class="container managerviewapplicationform">
+    <div class="table-responsive">
+        <table class="table table-bordered text-center">
+            <h2 class="heading">Applied Forms</h2>
+            <thead class="table-dark-maroon text-white">
+                <tr>
+                    <th>S.No</th>
+                    <th>Applied Amount</th>
+                    <th>Application Date</th>
+                    <th>Status</th>
+                    <th>Proof Document</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let p of planApplications; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>₹{{ p.appliedAmount }}</td>
+                    <td>{{ p.date }}</td>
+                    <td>{{ p.status }}</td>
+                    <td>
+                        <!-- Show the View Image button -->
+                        <button (click)="toggleOpen(p.image)" class="btn btn-info btn-sm">View Image</button>
+                    </td>
+                    <td>
+                        <!-- Conditionally show Accept/Reject or DECIDED -->
+                        <ng-container *ngIf="p.status === 'PENDING'">
+                            <button class="btn btn-success btn-sm" (click)="acceptApplication(p.planApplicationId)">Accept</button>
+                            <button class="btn btn-danger btn-sm" (click)="openRejectModal(p.planApplicationId)">Reject</button>
+                        </ng-container>
+                        <ng-container *ngIf="p.status !== 'PENDING'">
+                            <span class="text-muted">DECIDED</span>
+                        </ng-container>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Reject Reason Modal -->
+<div *ngIf="showRejectModal" class="modal-container">
+    <div class="modal-content">
+        <h5>Enter Reason for Rejection</h5>
+        <textarea [(ngModel)]="rejectionReason" placeholder="Type the rejection reason..." class="form-control"></textarea>
+        <button (click)="confirmRejection()" class="btn btn-danger btn-sm mt-2">Confirm Rejection</button>
+        <button (click)="toggleRejectModal()" class="btn btn-secondary btn-sm mt-2">Cancel</button>
+    </div>
+</div>
+
+<!-- Modal to View Image -->
+<div *ngIf="showModal" class="modal-container">
+    <div class="modal-content">
+        <!-- Constructing the image URL dynamically -->
+        <img [src]="'https://ide-cacacacfdeafbedfebedabfcbfefde.premiumproject.examly.io/proxy/8080/api/image/' + imageSrc" alt="image" class="img-fluid">
+        <button (click)="toggleClose()" class="btn btn-secondary btn-sm mt-2">Close</button>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<main *ngIf="enquiries.length > 0" class="main_container">
+    <h2 class="subheading">User Enquiries</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Enquiry Message</th>
+                <th>Manager Reply</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let enquiry of enquiries; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ enquiry.message }}</td>
+                <td>{{decodeHtml(enquiry?.replyFromManager)}}</td>
+                <td class="action">
+                    <button *ngIf="enquiry.status === 'PENDING'"
+                            (click)="openEditModal(enquiry)"
+                            class="btn btn-primary btn-sm">
+                        Edit
+                    </button>
+                    <button *ngIf="enquiry.status === 'RESOLVED'"
+                            class="btn btn-secondary btn-sm"
+                            [disabled]="true"
+                            title="Can't edit approved enquiries">
+                        Edit
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</main>
+
+<main *ngIf="enquiries.length == 0" class="main_container">
+    <div class="no-enquiries">No Enquiries found</div>
+  </main>
+
+<!-- Modal for Editing Enquiry -->
+<div *ngIf="showEditModal" class="modal-container">
+    <div class="modal-content">
+        <h5>Edit Enquiry</h5>
+        <textarea [(ngModel)]="editMessage" class="form-control" placeholder="Edit your enquiry message"></textarea>
+        <button (click)="confirmEdit()" class="btn btn-success btn-sm mt-2">Confirm Edit</button>
+        <button (click)="toggleEditModal()" class="btn btn-secondary btn-sm mt-2">Cancel</button>
+    </div>
+</div>

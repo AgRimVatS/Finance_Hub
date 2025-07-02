@@ -1,0 +1,16 @@
+<div class="main_container" [ngClass]="{'user-background': isUser(), 'admin-background': isAdmin()}">
+
+  <!-- Navbar (Always Visible) -->  
+  <div class="inner_container_1">
+    <app-adminnav *ngIf="isAdmin()"></app-adminnav>
+    <app-usernav *ngIf="isUser()"></app-usernav>
+    <app-navbar *ngIf="!isUser() && !isAdmin()"></app-navbar>
+  </div>
+
+  <!-- Main Content with Overlay -->
+  <div class="inner_container_2">
+    <div class="overlay"></div> <!-- Black Overlay -->
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

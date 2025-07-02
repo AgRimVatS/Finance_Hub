@@ -1,0 +1,170 @@
+/* Root Color Variables */
+:root {
+  --dark-maroon: #5D001E;
+  --light-gray: #E3E2DF;
+  --light-pink: #E3AFBC;
+  --dark-pink: #9A1750;
+  --bright-pink: #EE4C7C;
+  --white: #FFFFFF;
+  --black: #000000;
+}
+ 
+/* Main Container */
+.managerviewenquiries {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 70px;
+  position: relative;
+}
+ 
+/* Glass Effect Container */
+.container {
+  max-width: 850px;
+  width: 90%;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+ 
+/* Subheading */
+.subheading {
+  color: white;
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+ 
+/* Table Container */
+.table-responsive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 400px;
+  overflow-y: auto;
+  width: 100%;
+  padding-top: 15px;
+  margin-top: 20px;
+}
+ 
+/* Modern Table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.15);;
+  margin: auto;
+}
+ 
+/* Table Header */
+.table thead th {
+  padding: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  border-bottom: 2px solid #EE4C7C;
+}
+ 
+/* Table Rows */
+.table tbody tr {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+ 
+}
+ 
+.table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: scale(1.01);
+}
+ 
+/* Table Cells */
+.table th,
+.table td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 1rem;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+ 
+/* Edit Button */
+.edit-button {
+  background-color: #EE4C7C;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+}
+ 
+/* No Enquiries Message */
+.no-enquiries {
+  color: white;
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 20px;
+}
+ 
+/* Input Box */
+input[type="text"] {
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  color: white;
+  width: 100%;
+  background-color: transparent;
+  padding: 5px 10px;
+  text-align: center;
+  font-size: 1rem;
+}
+ 
+/* Responsive Design */
+ 
+/* Tablets */
+@media (max-width: 1024px) {
+  .container {
+    max-width: 750px;
+  }
+  .table th,
+  .table td {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+}
+ 
+/* Phones */
+@media (max-width: 768px) {
+  .container {
+    max-width: 95%;
+    padding: 15px;
+  }
+  .table {
+    font-size: 0.8rem;
+  }
+  .table th,
+  .table td {
+    padding: 6px;
+  }
+  .edit-button {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+}

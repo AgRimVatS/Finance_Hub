@@ -1,0 +1,43 @@
+<!-- charts.component.html -->
+<div class="chart-container">
+  <canvas #pieChart baseChart 
+    [chartType]="'pie'"
+    [data]="applicationStatusData.datasets[0].data"
+    [labels]="applicationStatusData.labels">
+  </canvas>
+  <button class="fullscreen-btn" (click)="openFullscreen('pie')">
+    <i class="fas fa-expand"></i>
+  </button>
+</div>
+
+<div class="chart-container">
+  <canvas #lineChart baseChart
+    [chartType]="'line'"
+    [data]="monthlyApplicationData.datasets[0].data"
+    [labels]="monthlyApplicationData.labels">
+  </canvas>
+  <button class="fullscreen-btn" (click)="openFullscreen('line')">
+    <i class="fas fa-expand"></i>
+  </button>
+</div>
+
+<div class="chart-container">
+  <canvas #barChart baseChart 
+    [chartType]="'bar'"
+    [data]="enquiryStatusData.datasets[0].data"
+    [labels]="enquiryStatusData.labels">
+  </canvas>
+  <button class="fullscreen-btn" (click)="openFullscreen('bar')">
+    <i class="fas fa-expand"></i>
+  </button>
+</div>
+
+<!-- Fullscreen Modal -->
+<div *ngIf="fullscreenChart" class="fullscreen-modal">
+  <button class="close-modal" (click)="closeFullscreen()">Close</button>
+  <canvas #fullscreenCanvas baseChart
+    [chartType]="fullscreenChart.type"
+    [data]="fullscreenChart.data"
+    [labels]="fullscreenChart.labels">
+  </canvas>
+</div>

@@ -1,0 +1,179 @@
+body {
+  background: linear-gradient(135deg, #E3E2DF, #E3AFBC); /* Corrected color codes */
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px; /* Reduced font size */
+}
+
+.savings-page {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  /* padding-top: 70px; */
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 0;
+}
+
+.savings-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  padding-top: 20px;
+  height: calc(100vh - 120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  margin-top: 5%;
+  position: relative;
+  z-index: 1;
+}
+
+.form-wrapper {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 25px; /* Reduced padding */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* Corrected box-shadow */
+}
+
+.savings-title {
+  color: white !important;
+  text-align: center;
+  margin-bottom: 15px; /* Reduced margin */
+  font-size: 1.7rem; /* Slightly smaller title */
+  font-weight: 600;
+}
+
+.table-container {
+  max-height: 500px;
+  overflow-y: auto;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.table-modern {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.table-modern thead {
+  background: rgba(255, 255, 255, 0.15);
+  font-weight: 700;
+  text-transform: uppercase;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.table-modern tbody tr {
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.15);
+
+}
+
+.table-modern tbody tr:nth-child(odd) {
+  background: rgba(255, 255, 255, 0.15); /* Slightly transparent white */
+}
+
+.table-modern tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.15); /* Slightly transparent white */
+}
+
+.table-modern tbody tr:hover {
+  background: rgba(255, 255, 255, 0.15); /* Slightly transparent white */
+  transform: scale(1.01);
+}
+
+.table-modern th,
+.table-modern td {
+  padding: 12px; /* Smaller padding */
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  color: #ffffff; /* Changed text color to black for better visibility */
+  font-size: 0.9rem; /* Smaller text */
+  background: rgba(255, 255, 255, 0.15);    
+}
+
+.btn-main,
+.btn-secondary {
+  border: none;
+  border-radius: 8px;
+  padding: 5px 12px; /* Reduced button size */
+  transition: all 0.3s;
+  font-weight: 600;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 0.85rem; /* Smaller button text */
+}
+
+.savings-container .btn-main {
+  background-color: #a2526f !important; /* Corrected color code */
+  color: white !important; /* Changed text color to white for better visibility */
+}
+
+.savings-container .btn-secondary {
+  background-color: #E3AFBC !important; /* Corrected color code */
+  color: white !important;
+}
+
+/* Button hover effect */
+.btn-main:hover,
+.btn-secondary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Custom scrollbar for table container */
+.table-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background: #EE4C7C; /* Corrected color code */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .savings-title {
+    font-size: 1.5rem;
+  }
+
+  .form-wrapper {
+    padding: 15px;
+  }
+
+  .table-modern {
+    font-size: 0.85rem;
+  }
+
+  .btn-main,
+  .btn-secondary {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
+}

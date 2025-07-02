@@ -1,0 +1,253 @@
+ .home-container {
+
+     width: 100%;
+
+     min-height: 100vh;
+
+     background-color: #000000;
+
+     color: white;
+
+     position: relative;
+
+ }
+
+
+
+ .home-container::before {
+
+     content: "";
+
+     position: absolute;
+
+     top: 0;
+
+     left: 0;
+
+     width: 100%;
+
+     height: 100%;
+
+     background: rgba(0, 0, 0, 0.5);
+
+     z-index: 1;
+
+ }
+
+
+
+ .hero-section {
+
+     position: relative;
+
+     height: 40vh;
+
+     display: flex;
+
+     align-items: center;
+
+     justify-content: center;
+
+     text-align: center;
+
+     overflow: hidden;
+
+     z-index: 2;
+
+ }
+
+
+
+ .video-overlay {
+
+     position: absolute;
+
+     top: 0;
+
+     left: 0;
+
+     width: 100%;
+
+     height: 100%;
+
+     background: rgba(0, 0, 0, 0.6);
+
+ }
+
+
+
+ .glass-content {
+
+     position: relative;
+
+     z-index: 2;
+
+     padding: 40px;
+
+     text-align: center;
+
+ }
+
+
+
+ .glass-box {
+
+     background: rgba(255, 255, 255, 0.15);
+
+     backdrop-filter: blur(10px);
+
+     border-radius: 15px;
+
+     border: 1px solid rgba(255, 255, 255, 0.2);
+
+     box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.37);
+
+     padding: 30px;
+
+     transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+ }
+
+
+
+ .glass-box:hover {
+
+     transform: translateY(-5px);
+
+     box-shadow: 0 12px 40px 0 rgba(255, 255, 255, 0.45);
+
+ }
+
+
+
+ .stats-section {
+
+     padding: 40px 20px;
+
+     position: relative;
+
+     z-index: 2;
+
+ }
+
+
+
+ .features-grid {
+
+     display: grid;
+
+     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+     gap: 20px;
+
+     padding: 20px;
+
+ }
+
+
+
+ .feature-box {
+
+     text-align: center;
+
+     cursor: pointer;
+
+ }
+
+
+
+ .feature-box i {
+
+     margin-bottom: 15px;
+
+ }
+
+
+
+ .highlight {
+
+     color: #EE4C7C;
+
+     text-shadow: 0 0 10px rgba(238, 76, 124, 0.3);
+
+ }
+
+
+
+ .btn-custom {
+
+     padding: 12px 24px;
+
+     font-size: 1rem;
+
+     font-weight: bold;
+
+     background: linear-gradient(135deg, #EE4C7C, #9A1750);
+
+     border: none;
+
+     color: white;
+
+     border-radius: 8px;
+
+     transition: all 0.3s ease-in-out;
+
+     margin-top: 15px;
+
+     cursor: pointer;
+
+ }
+
+
+
+ .btn-custom:hover {
+
+     transform: scale(1.05);
+
+     box-shadow: 0 6px 20px rgba(238, 76, 124, 0.4);
+
+ }
+
+
+
+ .section-content {
+
+     padding: 40px 20px;
+
+     text-align: center;
+
+     position: relative;
+
+     z-index: 2;
+
+ }
+
+
+
+ h2 {
+
+     margin-bottom: 30px;
+
+ }
+
+
+
+ /* Responsive Design */
+
+ @media (max-width: 768px) {
+
+     .features-grid {
+
+         grid-template-columns: 1fr;
+
+     }
+
+
+
+     .hero-section {
+
+         height: 30vh;
+
+     }
+
+ }

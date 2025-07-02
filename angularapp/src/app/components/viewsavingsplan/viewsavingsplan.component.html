@@ -1,0 +1,45 @@
+<div class="savings-page">
+  <div class="overlay"></div>
+  <div class="savings-container">
+    <div class="form-wrapper">
+      <h2 class="savings-title">View Savings Plans</h2>
+      <div style="display: flex; align-items: center;justify-content: space-between; width: 100%;padding: 5px;">
+        <button style="width: 25%;color: white;  background: rgba(255, 255, 255, 0.15);" (click)="sortToggle()">Toggle Goal Amount</button>&nbsp;
+        <button style="width: 25%;color: white;  background: rgba(255, 255, 255, 0.15);" (click)="sortToggle1()">Toggle Time Frame</button>
+      </div>
+ 
+      <!-- Scrollable Table Container -->
+      <div class="table-container">
+        <table class="table table-modern">
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th>Plan Name</th>
+              <th>Goal Amount</th>
+              <th>Time Frame (Years)</th>
+              <th>Risk Level</th>
+              <th>Description</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of arr; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ item.name }}</td>
+              <td>₹{{ item.goalAmount }}</td>
+              <td>{{ item.timeFrame }}</td>
+              <td>{{ item.riskLevel }}</td>
+              <td>{{ item.description }}</td>
+              <td>{{ item.status }}</td>
+              <td>
+                <button class="btn btn-main" (click)="editSavingsPlan(item.savingsPlanId)">Edit</button>
+                <button class="btn btn-secondary" (click)="deleteSavingsPlans(item.savingsPlanId)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

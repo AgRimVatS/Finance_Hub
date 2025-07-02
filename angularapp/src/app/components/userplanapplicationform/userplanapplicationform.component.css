@@ -1,0 +1,138 @@
+:root {
+    --dark-maroon: #5D001E;
+    --light-gray: #E3E2DF;
+    --light-pink: #E3AFBC;
+    --dark-pink: #9A1750;
+    --bright-pink: #EE4C7C;
+    --white: #FFFFFF;
+  }
+  
+  body {
+    background-color: var(--light-gray);
+    color: #333;
+    font-family: Arial, sans-serif;
+    overflow: hidden; /* Prevent scrolling */
+  }
+  
+  /* Form Container */
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    padding-top: 20px; /* Reduced padding to pull the form up */
+  }
+  
+  .form-box {
+    background: rgba(255, 255, 255, 0.1); /* Glass effect background */
+    backdrop-filter: blur(10px); /* Glass effect blur */
+    padding: 20px; /* Reduced padding */
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    width: 600px; /* Increased width */
+    max-width: 100%;
+    max-height: 80%;
+  }
+  
+  h2 {
+    color:white; /* Changed to white */
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold; /* Made text bold */
+  }
+  
+  label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: white; /* Changed to white */
+  }
+  
+  input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.1); /* Glass effect background */
+    color: white; /* Changed to white */
+    font-weight: bold; /* Made text bold */
+  }
+  
+  textarea {
+    resize: none;
+    height: 100px;
+  }
+  
+  /* Form Row */
+  .form-row {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .form-row .form-group {
+    flex: 1;
+  }
+
+  .error{
+    color: red;
+  }
+  
+  /* Buttons */
+  .back-btn {
+    background-color: #EE4C7C;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+    margin-bottom: 20px;
+    font-weight: bold; /* Made text bold */
+  }
+  
+  .back-btn:hover {
+    background-color: #EE4C7C;
+    color: white;
+  }
+  
+  .submit-btn {
+    width: 100%;
+    background-color: #EE4C7C;
+    color: white;
+    border: none;
+   
+    border-radius: 5px;
+    font-size: 16px;
+ 
+    font-weight: bold; /* Made text bold */
+  }
+  
+ 
+  
+  /* Table */
+  .table-bordered {
+    border: 1px solid var(--dark-maroon);
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .table-bordered th, .table-bordered td {
+    border: 1px solid var(--dark-maroon);
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .table-bordered th {
+    background-color: var(--dark-maroon);
+    color: white;
+    font-weight: bold; /* Made text bold */
+  }
+  
+  .table-bordered td {
+    background-color: rgba(255, 255, 255, 0.1); /* Glass effect background */
+    color: white; /* Changed to white */
+    font-weight: bold; /* Made text bold */
+  }

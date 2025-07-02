@@ -1,0 +1,22 @@
+<div class="container">
+  <h2>Edit User Enquiry</h2>
+  <form (ngSubmit)="updateEnquiry()">
+    <!-- Enquiry Message (Read-Only) -->
+    <label for="enquiry-message">Enquiry Message</label>
+    <input type="text" id="enquiry-message" name="enquiry-message" [(ngModel)]="enquiry.message" readonly class="form-control">
+
+    <!-- Reply Message (Manager Can Edit) -->
+    <label for="reply-message">Reply</label>
+    <input type="text" id="reply-message" name="reply-message" [(ngModel)]="enquiry.replyFromManager" class="form-control">
+
+    <!-- Status Dropdown -->
+    <label for="status">Status</label>
+    <select id="status" name="status" [(ngModel)]="enquiry.status" class="form-control">
+      <option value="PENDING">Pending</option>
+      <option value="RESOLVED">Resolved</option>
+    </select>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary mt-3 primary-btn">Update Enquiry</button>
+  </form>
+</div>
